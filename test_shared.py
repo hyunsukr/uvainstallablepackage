@@ -1,7 +1,9 @@
 import shared as sh
 sh.afunction()
 
-print(sh.max_function())
+sh.max_function()
+
+sh.new_func()
 
 print(sh.clean_string('hello world'))
 

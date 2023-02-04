@@ -25,4 +25,5 @@ def new_func():
     pass
 
 def max_function():
-    print("This is Max's Function")
+    # print("This is Max's Function")
+    pass

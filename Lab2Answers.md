@@ -1,3 +1,9 @@
+## Affirm we're getting the same object
+Make two calls to Singleton() stored in variables a and b. Note theassert using python's id function. When you run it, why does the assert not throw an error? (1 pt)
+
+- The declaration of the variable A creates a new singleton instance. However, for B that is not exactly the case. The singleton instance that was already created (by delcaring A) is returned. Therefore, the id of the two instances are the same because under the hood they are the same. We can double check this by seeing the print outputs. When A is declared "initalize once" is outputted but B does not output such message. The id() function returns a unique id for the specified object, therefore since A and B are the same (B updates the counter) the assert does not throw the error. 
+
+
 ## Init behavior
 Look at the print("INIT") statement in the __init__ function in the Singleton class.
 

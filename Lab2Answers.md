@@ -34,3 +34,56 @@ Why is the printout of this variable 1, then 2, and not 1, 1 instead? (1 pt)
 - The reasoning is similar to the answer shown above. If you take out the if clause in the __new__ function, 'if not hasattr(cls, 'instance'):', then the output will be 1, 1. However, since this if clause is not entered because the object already has the attribute of instance, the count is just updated. Thus, the count variable is 1, then 2. 
 
 
+## Using a decorator in pytest
+
+All tests were conducted through pytest `pytest tests/ -v`.
+The test file can be found at the following
+
+https://github.com/hyunsukr/uvainstallablepackage/blob/main/tests/test_shared.py
+
+
+### Writing a passing function
+
+```
+compressor_data = [
+    (' This is      a  test string  ', 'This is a test string')
+]
+@pytest.mark.parametrize("input,expected", compressor_data)
+def test_compressor(input, expected):
+    assert sh.space_compress(input) == expected
+    assert 1 == 1
+```
+
+### Introducing pytest decorators
+Decorators are through the test functions
+
+### Adding a Failing test
+```
+## Failing Test for Compressor
+compressor_data_with_failure = [
+    (' This is      a test string  ', 'This is a test string'),
+    pytest.param(' This! is      a ,test string  ', 'Max is almost done with MSDS!', marks=pytest.mark.xfail),
+    pytest.param('111111',111111, marks=pytest.mark.xfail(reason="String to Integer"))
+]
+@pytest.mark.parametrize("input,expected", compressor_data_with_failure)
+def test_compressor_with_failure(input, expected):
+    assert sh.space_compress(input) == expected
+    assert 1 == 1
+```
+
+### Adding a skipped test
+```
+@pytest.mark.skip(reason="This is intentionally skipped due to incorrectness")
+def test_skip():
+    assert 1 == 2
+```
+
+### Adding a skip on condition test
+```
+@pytest.mark.skipif(sys.platform == 'darwin', reason="Test set for non mac users")
+def test_os_condition():
+    print("My platform is", sys.platform)
+    ## This test fails.
+    ## if the above skipif is set to != 'darwin' I can see the test fail in my CLI. 
+    assert sh.space_compress('111111') == 111111
+```

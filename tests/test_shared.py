@@ -37,7 +37,7 @@ def test_skip():
 
 
 ## Skip Conditionally depending on OS
-@pytest.mark.skipif(sys.platform == 'darwin', reason="Test set for non mac users")
+@pytest.mark.skipif(sys.platform == 'darwin' or sys.platform=='linux', reason="Test set for non mac users")
 def test_os_condition():
     print("My platform is", sys.platform)
     ## This test fails.

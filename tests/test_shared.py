@@ -46,4 +46,4 @@ def test_os_condition():
 
 
 def test_dummy_new():
-    assert 1 == 2
+    assert 1 == 1

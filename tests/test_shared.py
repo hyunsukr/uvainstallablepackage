@@ -43,3 +43,7 @@ def test_os_condition():
     ## This test fails.
     ## if the above skipif is set to != 'darwin' I can see the test fail in my CLI. 
     assert sh.space_compress('111111') == 111111
+
+
+def test_dummy_new():
+    assert 1 == 2
